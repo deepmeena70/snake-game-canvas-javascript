@@ -9,28 +9,44 @@
   const canvasSize = 680;
 
   const canvasFillColor = "#000d36";
-  const canvasStrokeColor = "rgba(211, 211, 211, 0.2)";
+  const canvasStrokeColor = "rgba(211, 211, 211, 0.19)";
+
+  const frameRate = 9.5;
 
   // grid padding
   const pGrid = 10;
   // grid width
   const grid_line_len = canvasSize - 2 * pGrid;
   //  cell count
-  const cellCount = 10;
+  const cellCount = 34;
   // cell size
   const cellSize = grid_line_len / cellCount;
 
-  console.log(cellSize,cellCount);
+  let gameActive;
+
+  const randomColor = () => {
+    let color;
+    let colorArr = [
+      "#6300BD",
+      "#8001DD",
+      "#A120F2",
+      "#C100FE",
+      "#DD00FD",
+      "#FF4FDB",
+    ];
+    color = colorArr[5];
+    return color;
+  };
 
   const head = {
     x: 2,
     y: 1,
-    color: "red",
+    color: randomColor(),
     vX: 0,
     vY: 0,
   };
 
-  let tailLength = 2;
+  let tailLength = 4;
   let snakeParts = [];
   const tailColor = "green";
 
@@ -42,8 +58,8 @@
   }
 
   const food = {
-    x: 4,
-    y: 4,
+    x: 5,
+    y: 5,
     color: "yellow",
   };
 
@@ -56,7 +72,6 @@
     // canvas stroke
     ctx.strokeStyle = canvasStrokeColor;
     ctx.strokeRect(0, 0, w, h);
-
   };
 
   //   this will draw the grid
@@ -108,7 +123,8 @@
   };
 
   const changeDir = (e) => {
-    switch (e.key.toLowerCase()) {
+    let key = e.key.toLowerCase();
+    switch (key) {
       case "d":
         if (head.vX === -1) break;
         head.vX = 1;
@@ -130,6 +146,11 @@
         head.vY = 1;
         break;
     }
+
+    if(key =="d" || key == "a" || key == "w" || key == "s"){
+      gameActive = true;
+    }
+
   };
 
   const drawFood = () => {
@@ -159,11 +180,13 @@
   const isGameOver = () => {
     let gameOver = false;
 
-    // snakeParts.forEach((part) => {
-    //   if (part.x == head.x && part.y == head.y) {
-    //     gameOver = true;
-    //   }
-    // });
+    snakeParts.forEach((part) => {
+      if (part.x == head.x && part.y == head.y) {
+        gameOver = true;
+      }
+    });
+
+    console.log(head.x, snakeParts[0].x);
 
     if (
       head.x < 0 ||
@@ -185,15 +208,14 @@
     drawGrid();
     drawSnake();
     updateSnakePosition();
-    // console.log(cellSize)
-    if(isGameOver()) {
-      return;
+    if (gameActive) {
+      if (isGameOver()) {
+        return;
+      }
     }
     foodCollision();
     drawFood();
-    // requestAnimationFrame(animate)
-    setTimeout(animate, 1000 / 4);
+    setTimeout(animate, 1000 / frameRate);
   };
   animate();
-
 })();
