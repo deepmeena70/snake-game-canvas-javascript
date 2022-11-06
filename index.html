@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="index.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <canvas id="canvas"></canvas>
-</body>
+    <div id="high-score"></div>
+    <div id="score"></div>
+    <div id="control-keys">
+      <div>Left 👉 A or ➡️</div>
+      <div>Right 👉 D or ⬅️</div>
+      <div>Up 👉 W or ⬆️</div>
+      <div>Down 👉 S or ⬇️</div>
+    </div>
+    <div id="controls">
+        <button id="show-grid">SHOW GRID</button>
+        <button id="pause">PAUSE</button>
+        <button id="reset">RESET</button>
+    </div>
+    <div id="play">Press control keys to start<span style="font-size: 3em;">⌨️</span></div>
+  </body>
 </html>
