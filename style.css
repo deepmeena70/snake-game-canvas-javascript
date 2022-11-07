@@ -57,7 +57,7 @@ body {
 #controls {
   position: absolute;
   top: 120px;
-  left: 320px;
+  left: 10%;
   display: flex;
   flex-direction: column;
 }
@@ -71,6 +71,11 @@ body {
   font-size: 1.2em;
   line-height: 48px;
   box-shadow: 0 0 8px lightgreen;
+}
+
+#control-head{
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
 }
 
 #reset,

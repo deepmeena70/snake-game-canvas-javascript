@@ -55,6 +55,8 @@
     vY: 0,
     draw: () => {
       ctx.fillStyle = head.color;
+      ctx.shadowColor = head.color;
+      ctx.shadowBlur = 2.5;
       ctx.fillRect(
         head.x * cellSize + pGrid,
         head.y * cellSize + pGrid,
@@ -74,6 +76,8 @@
     }
     draw() {
       ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 2.5;
       ctx.fillRect(
         this.x * cellSize + pGrid,
         this.y * cellSize + pGrid,
@@ -89,6 +93,8 @@
     color: "#FF3131",
     draw: () => {
       ctx.fillStyle = food.color;
+      ctx.shadowColor = food.color;
+      ctx.shadowBlur = 5;
       ctx.fillRect(
         food.x * cellSize + pGrid,
         food.y * cellSize + pGrid,
@@ -223,20 +229,19 @@
   };
 
   addEventListener("keydown", changeDir);
-  
+
   const PlayButton = (show) => {
-    if(!show){
-      playEl.style.display = "none"
+    if (!show) {
+      playEl.style.display = "none";
     } else {
-      playEl.style.display = "block"
+      playEl.style.display = "block";
     }
-  }
+  };
 
   const pauseGame = () => {
     gameActive = false;
-    if(!isGameOver())PlayButton(true);
+    if (!isGameOver()) PlayButton(true);
   };
-
 
   pauseEl.addEventListener("click", pauseGame);
 
