@@ -240,6 +240,10 @@
 
   const pauseGame = () => {
     gameActive = false;
+    if(!gameActive) {
+      pauseEl.removeAttribute('class');
+      pauseEl.setAttribute('class', 'pause-not-active')
+    }
     if (!isGameOver()) PlayButton(true);
   };
 
@@ -255,6 +259,8 @@
     food.draw();
     if (gameActive) {
       PlayButton(false);
+      pauseEl.removeAttribute('class');
+      pauseEl.setAttribute('class','pause-active');
       updateSnakePosition();
       if (isGameOver()) {
         showGameOver();
@@ -276,9 +282,11 @@
   const toggleGrid = () => {
     if (!showGrid) {
       showGrid = true;
+      showGridEl.innerHTML = `Hide Grid`
       return;
     }
     showGrid = false;
+    showGridEl.innerHTML=`Show Grid`
   };
 
   showGridEl.addEventListener("click", toggleGrid);
